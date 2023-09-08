@@ -82,7 +82,7 @@ function InfiniteLoader<T>({
    * A reference to the last product element in the list, used for intersection observing.
    */
 
-  const lastProductRef = useIntersectionObserver<HTMLDivElement>(() => {
+  const loadMoreRef = useIntersectionObserver<HTMLDivElement>(() => {
     void fetchMoreItems(items.length).then(
       (newItems) => newItems && setItems((items) => [...items, ...newItems])
     );
@@ -99,7 +99,7 @@ function InfiniteLoader<T>({
           );
         })}
       </ul>
-      <div ref={lastProductRef}></div>
+      <div ref={loadMoreRef}></div>
       {!hasNextPage && noMoreItems}
     </>
   );
