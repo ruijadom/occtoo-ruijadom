@@ -62,7 +62,7 @@ function InfiniteLoader<T>({
   liNativeProps,
 }: InfiniteLoaderProps<T>): React.ReactElement {
   const [items, setItems] = useState<T[]>([]);
-  const [isFetching, setIsFetching] = useState<boolean>(true);
+  const [isFetching, setIsFetching] = useState<boolean>(false);
 
   /**
    * Fetch more items asynchronously.
