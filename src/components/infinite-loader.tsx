@@ -27,9 +27,14 @@ interface InfiniteLoaderProps<T> {
   renderItems: (items: T[]) => React.ReactNode;
 
   /**
+   * (Optional) A React node to display while loading more items.
+   */
+  loadingElement?: React.ReactNode;
+
+  /**
    * (Optional) A React node to display when there are no more items to load.
    */
-  noMoreItems?: React.ReactNode;
+  noMoreElement?: React.ReactNode;
 
   /**
    * (Optional) HTML attributes for the `<ul>` element.
@@ -51,12 +56,13 @@ function InfiniteLoader<T>({
   fetchFn,
   hasNextPage,
   renderItems,
-  noMoreItems,
+  noMoreElement,
+  loadingElement,
   ulNativeProps,
-  liNativeProps
+  liNativeProps,
 }: InfiniteLoaderProps<T>): React.ReactElement {
   const [items, setItems] = useState<T[]>([]);
-  const [isFetching, setIsFetching] = useState<boolean>(false);
+  const [isFetching, setIsFetching] = useState<boolean>(true);
 
   /**
    * Fetch more items asynchronously.
@@ -83,6 +89,8 @@ function InfiniteLoader<T>({
    */
 
   const loadMore = useIntersectionObserver<HTMLDivElement>(() => {
+    if (!hasNextPage || isFetching) return;
+
     void fetchMoreItems(items.length).then(
       (newItems) => newItems && setItems((items) => [...items, ...newItems])
     );
@@ -90,7 +98,10 @@ function InfiniteLoader<T>({
 
   return (
     <>
-      <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6" {...ulNativeProps}>
+      <ul
+        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6"
+        {...ulNativeProps}
+      >
         {React.Children.toArray(renderItems(items)).map((item, index) => {
           return (
             <li key={index} {...liNativeProps}>
@@ -98,9 +109,10 @@ function InfiniteLoader<T>({
             </li>
           );
         })}
+        {isFetching && loadingElement}
       </ul>
       <div ref={loadMore}></div>
-      {!hasNextPage && noMoreItems}
+      {!hasNextPage && noMoreElement}
     </>
   );
 }

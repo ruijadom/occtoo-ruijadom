@@ -26,8 +26,9 @@ export interface Product {
 
 function App() {
   const [hasNextPage, setHasNextPage] = useState(true);
+  const currentLimit = 9;
 
-  const fetchApi = async (skip = 0, limit = 9) => {
+  const fetchApi = async (skip = 0, limit = currentLimit) => {
     const response = await dummyApi.get(
       `/products?limit=${limit}&skip=${skip}`
     );
@@ -39,7 +40,7 @@ function App() {
     return data.products;
   };
 
-  const renderElement = (items: Product[]) => {
+  const renderElements = (items: Product[]) => {
     return items.map((product: Product) => (
       <div key={product.id} className="relative border h-60">
         <img
@@ -55,7 +56,15 @@ function App() {
     ));
   };
 
-  const noMoreItemsElement = <p className="text-center">No more items</p>;
+  const noMoreElement = <p className="text-center">No more items</p>;
+
+  const loadingElement = Array.from(Array(currentLimit).keys()).map(
+    (_, index) => (
+      <div key={index} className="animate-pulse relative border h-60">
+        <div className="flex h-full w-full bg-gray-200"></div>
+      </div>
+    )
+  );
 
   return (
     <div className="min-h-screen w-full">
@@ -64,8 +73,9 @@ function App() {
         <InfiniteLoader
           fetchFn={fetchApi}
           hasNextPage={hasNextPage}
-          renderItems={renderElement}
-          noMoreItems={noMoreItemsElement}
+          renderItems={renderElements}
+          noMoreElement={noMoreElement}
+          loadingElement={loadingElement}
         />
       </div>
     </div>
