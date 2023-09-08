@@ -1,8 +1,12 @@
 # Technical Challenge at Occtoo by Ruijadom
 
+## Deployed: 
+https://occtoo-ruijadom.vercel.app/
+
 ## Table of Contents
 
 - [Technical Challenge at Occtoo by Ruijadom](#technical-challenge-at-occtoo-by-ruijadom)
+  - [Deployed:](#deployed)
   - [Table of Contents](#table-of-contents)
   - [Description](#description)
     - [Additional notes:](#additional-notes)
@@ -65,8 +69,9 @@ The component uses the `useIntersectionObserver` hook to detect when the user ha
   > It efficiently updates the state using setItems to append new items without unnecessary re-renders.
 
 ### Additional notes:
+- [x] The component could be improved by adding a loading state to the API call.
+  > Added the `loadingElement` prop is an optional prop you can include in your component. It expects a React node, which can be any valid React component or JSX. This node will be displayed in place of the regular content while the API call is in progress. Essentially, it serves as a visual indicator to the user that something is happening in the background.
 - [ ] The component could be improved by adding a loading state and a retry button in case the API call fails.
 - [ ] The component could be improved by adding a debounce to the intersection observer callback to avoid making too many API calls.
-- [ ] The component could be improved by adding a loading state to the API call.
-
+  
 Thanks for reading! 
