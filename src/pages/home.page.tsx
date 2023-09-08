@@ -60,7 +60,7 @@ function App() {
   return (
     <div className="min-h-screen w-full">
       <div className="px-4 py-8 max-w-6xl mx-auto">
-        <h2 className="text-2xl font-bold mb-4">Custom Loader</h2>
+        <h2 className="text-2xl font-bold mb-4">Infinite Loader component</h2>
         <InfiniteLoader
           fetchFn={fetchApi}
           hasNextPage={hasNextPage}
