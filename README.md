@@ -1,13 +1,10 @@
 # Technical Challenge at Occtoo by Ruijadom
 
-## Deployed: 
-https://occtoo-ruijadom.vercel.app/
-
 ## Table of Contents
 
 - [Technical Challenge at Occtoo by Ruijadom](#technical-challenge-at-occtoo-by-ruijadom)
-  - [Deployed:](#deployed)
   - [Table of Contents](#table-of-contents)
+  - [Deployed:](#deployed)
   - [Description](#description)
     - [Additional notes:](#additional-notes)
   - [Solution](#solution)
@@ -17,6 +14,8 @@ https://occtoo-ruijadom.vercel.app/
     - [Tasks Required](#tasks-required)
     - [Additional notes:](#additional-notes-1)
 
+## Deployed: 
+https://occtoo-ruijadom.vercel.app/
 
 ## Description
 
