@@ -12,7 +12,7 @@
     - [Structure](#structure)
     - [How it works](#how-it-works)
     - [Tasks Required](#tasks-required)
-    - [Additional notes:](#additional-notes-1)
+    - [Possible improvements:](#possible-improvements)
 
 ## Deployed: 
 https://occtoo-ruijadom.vercel.app/
@@ -67,10 +67,11 @@ The component uses the `useIntersectionObserver` hook to detect when the user ha
   > The code takes performance into consideration by not initiating multiple concurrent fetch requests (isFetching check in fetchMoreItems).
   > It efficiently updates the state using setItems to append new items without unnecessary re-renders.
 
-### Additional notes:
+### Possible improvements:
 - [x] The component could be improved by adding a loading state to the API call.
   > Added the `loadingElement` prop is an optional prop you can include in your component. It expects a React node, which can be any valid React component or JSX. This node will be displayed in place of the regular content while the API call is in progress. Essentially, it serves as a visual indicator to the user that something is happening in the background.
 - [ ] The component could be improved by adding a loading state and a retry button in case the API call fails.
 - [ ] The component could be improved by adding a debounce to the intersection observer callback to avoid making too many API calls.
+- [ ] User useInfiniteQuery from React Query to handle the API calls. This would allow us to cache the data and avoid making unnecessary API calls.
   
 Thanks for reading! 
