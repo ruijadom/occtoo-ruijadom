@@ -12,7 +12,7 @@ import { DependencyList, useCallback, useRef } from "react";
 export default function useIntersectionObserver<T extends HTMLElement>(
   callback: () => void,
   deps: DependencyList,
-  options?: IntersectionObserverInit
+  options?: IntersectionObserverInit,
 ) {
   const observer = useRef<IntersectionObserver | null>(null);
 
@@ -33,7 +33,7 @@ export default function useIntersectionObserver<T extends HTMLElement>(
         if (node) observer.current.observe(node);
       }
     },
-    [deps, callback, options]
+    [deps, callback, options],
   );
 
   return ref;

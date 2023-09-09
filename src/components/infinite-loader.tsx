@@ -92,14 +92,14 @@ function InfiniteLoader<T>({
     if (!hasNextPage || isFetching) return;
 
     void fetchMoreItems(items.length).then(
-      (newItems) => newItems && setItems((items) => [...items, ...newItems])
+      (newItems) => newItems && setItems((items) => [...items, ...newItems]),
     );
   }, [hasNextPage, !isFetching]);
 
   return (
     <>
       <ul
-        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6"
+        className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 md:gap-6"
         {...ulNativeProps}
       >
         {React.Children.toArray(renderItems(items)).map((item, index) => {
