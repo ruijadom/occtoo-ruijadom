@@ -44,7 +44,7 @@ function App() {
     return items.map((product: Product) => (
       <div key={product.id} className="relative border h-60">
         <img
-          className="flex h-full w-full object-cover"
+          className="h-48 w-full object-cover"
           src={product.thumbnail}
           alt={product.title}
         />
