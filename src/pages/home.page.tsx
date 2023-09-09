@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import InfiniteLoader from "@/components/infinite-loader";
 import dummyApi from "@/services/dummy-api";
+import { Card } from "@/components/ui/card";
 
 export interface ProductResponse {
   products: Product[];
@@ -42,17 +43,21 @@ function App() {
 
   const renderElements = (items: Product[]) => {
     return items.map((product: Product) => (
-      <div key={product.id} className="relative h-60 border">
-        <img
-          className="h-48 w-full object-cover"
-          src={product.thumbnail}
-          alt={product.title}
-        />
-        <div className=" absolute bottom-0 w-full bg-black px-3 py-2 capitalize text-white opacity-80">
-          <h2 className="text-md truncate font-semibold">{product.title}</h2>
-          <p className=" text-sm font-extralight">{product.brand}</p>
-        </div>
-      </div>
+      <Card key={product.id}>
+        <Card.Media src={product.thumbnail} alt={product.title} />
+        <Card.Content>
+          <div>
+            <div className="flex flex-row justify-between">
+              <h3 className="text-md truncate font-semibold">
+                {product.title}
+              </h3>
+              <div>★ {product.rating}</div>
+            </div>
+            <p className="text-sm font-extralight">{product.brand}</p>
+          </div>
+          <p className="text-sm">{product.price} €</p>
+        </Card.Content>
+      </Card>
     ));
   };
 
@@ -60,9 +65,22 @@ function App() {
 
   const loadingElement = Array.from(Array(currentLimit).keys()).map(
     (_, index) => (
-      <div key={index} className="relative h-60 animate-pulse border">
-        <div className="flex h-full w-full bg-gray-200"></div>
-      </div>
+      <Card key={index} className="animate-pulse">
+        <div>
+          <div className="h-80 w-full animate-pulse rounded-xl border bg-gray-200"></div>
+        </div>
+
+        <Card.Content>
+          <div>
+            <div className="flex flex-row justify-between">
+              <div className="h-6 w-1/2 rounded bg-gray-200"></div>
+              <div className="h-5 w-1/4 rounded bg-gray-200"></div>
+            </div>
+            <div className="mt-2 h-4 w-1/4 rounded bg-gray-200"></div>
+          </div>
+          <div className="mt-2 h-4 w-1/6 rounded bg-gray-200"></div>
+        </Card.Content>
+      </Card>
     ),
   );
 
