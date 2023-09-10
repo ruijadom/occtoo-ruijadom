@@ -11,8 +11,8 @@
     - [How to run](#how-to-run)
     - [Structure](#structure)
     - [How it works](#how-it-works)
-    - [Tasks Required](#tasks-required)
-    - [Possible improvements:](#possible-improvements)
+    - [Scope of work:](#scope-of-work)
+    - [Out of scope (possible improvements):](#out-of-scope-possible-improvements)
 
 ## Deployed: 
 https://occtoo-ruijadom.vercel.app/
@@ -54,7 +54,7 @@ This is a technical challenge for Occtoo. The challenge is to create an infinite
 
 The component uses the `useIntersectionObserver` hook to detect when the user has scrolled to the bottom of the page. When that happens, the component calls the callback passed. The callback is responsible for fetching the next page of data and updating the state of the component. The component then renders the new data.
 
-### Tasks Required
+### Scope of work:
 - [x] The code should be written in Typescript, using the latest React paradigms. 
   > The code is written in TypeScript, as indicated by the file extensions .tsx and the use of type annotations (interface, React.FC, InfiniteLoaderProps, etc.).
   > It uses modern React paradigms such as functional components, hooks (useState, useEffect, useCallback, and custom hooks). 
@@ -67,7 +67,7 @@ The component uses the `useIntersectionObserver` hook to detect when the user ha
   > The code takes performance into consideration by not initiating multiple concurrent fetch requests (isFetching check in fetchMoreItems).
   > It efficiently updates the state using setItems to append new items without unnecessary re-renders.
 
-### Possible improvements:
+### Out of scope (possible improvements):
 - [x] The component could be improved by adding a loading state to the API call.
   > Added the `loadingElement` prop is an optional prop you can include in your component. It expects a React node, which can be any valid React component or JSX. This node will be displayed in place of the regular content while the API call is in progress. Essentially, it serves as a visual indicator to the user that something is happening in the background.
 - [ ] The component could be improved by adding a loading state and a retry button in case the API call fails.
