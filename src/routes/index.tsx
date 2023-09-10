@@ -6,7 +6,7 @@ function Routes() {
   const element = useRoutes([
     {
       path: "/",
-      element: <HomePage />
+      element: <HomePage />,
     },
   ]);
 

@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import InfiniteLoader from "@/components/infinite-loader";
 import dummyApi from "@/services/dummy-api";
+import { Card } from "@/components/ui/card";
 
 export interface ProductResponse {
   products: Product[];
@@ -30,7 +31,7 @@ function App() {
 
   const fetchApi = async (skip = 0, limit = currentLimit) => {
     const response = await dummyApi.get(
-      `/products?limit=${limit}&skip=${skip}`
+      `/products?limit=${limit}&skip=${skip}`,
     );
 
     const data: ProductResponse = response.data;
@@ -42,17 +43,21 @@ function App() {
 
   const renderElements = (items: Product[]) => {
     return items.map((product: Product) => (
-      <div key={product.id} className="relative border h-60">
-        <img
-          className="h-48 w-full object-cover"
-          src={product.thumbnail}
-          alt={product.title}
-        />
-        <div className="absolute bottom-0 px-3 py-2 w-full bg-black opacity-80 text-white capitalize">
-          <h2 className=" font-semibold text-md truncate">{product.title}</h2>
-          <p className=" font-extralight text-sm">{product.brand}</p>
-        </div>
-      </div>
+      <Card key={product.id}>
+        <Card.Media src={product.thumbnail} alt={product.title} />
+        <Card.Content>
+          <div>
+            <div className="flex flex-row justify-between">
+              <h3 className="text-md truncate font-semibold">
+                {product.title}
+              </h3>
+              <div>★ {product.rating}</div>
+            </div>
+            <p className="text-sm font-extralight">{product.brand}</p>
+          </div>
+          <p className="text-sm">{product.price} €</p>
+        </Card.Content>
+      </Card>
     ));
   };
 
@@ -60,16 +65,29 @@ function App() {
 
   const loadingElement = Array.from(Array(currentLimit).keys()).map(
     (_, index) => (
-      <div key={index} className="animate-pulse relative border h-60">
-        <div className="flex h-full w-full bg-gray-200"></div>
-      </div>
-    )
+      <Card key={index} className="animate-pulse">
+        <div>
+          <div className="h-80 w-full animate-pulse rounded-xl border bg-gray-200"></div>
+        </div>
+
+        <Card.Content>
+          <div>
+            <div className="flex flex-row justify-between">
+              <div className="h-6 w-1/2 rounded bg-gray-200"></div>
+              <div className="h-5 w-1/4 rounded bg-gray-200"></div>
+            </div>
+            <div className="mt-2 h-4 w-1/4 rounded bg-gray-200"></div>
+          </div>
+          <div className="mt-2 h-4 w-1/6 rounded bg-gray-200"></div>
+        </Card.Content>
+      </Card>
+    ),
   );
 
   return (
     <div className="min-h-screen w-full">
-      <div className="px-4 py-8 max-w-6xl mx-auto">
-        <h2 className="text-2xl font-bold mb-4">Infinite Loader component</h2>
+      <div className="mx-auto max-w-6xl px-4 py-8">
+        <h2 className="mb-4 text-2xl font-bold">Infinite Loader component</h2>
         <InfiniteLoader
           fetchFn={fetchApi}
           hasNextPage={hasNextPage}
