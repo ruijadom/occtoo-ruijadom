@@ -1,8 +1,10 @@
-import { HTMLAttributes } from "react";
-
 import { cn } from "@/lib/utils";
 
-export interface CardMediaProps extends HTMLAttributes<HTMLImageElement> {}
+export interface CardMediaProps
+  extends React.DetailedHTMLProps<
+    React.ImgHTMLAttributes<HTMLImageElement>,
+    HTMLImageElement
+  > {}
 
 export const CardMedia = ({ ...nativeProps }: CardMediaProps) => {
   const imgClasses = cn(
