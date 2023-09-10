@@ -48,7 +48,7 @@ function App() {
         <Card.Content>
           <div>
             <div className="flex flex-row justify-between">
-              <h3 className="text-md truncate font-semibold">
+              <h3 className="text-md flex-1 truncate font-semibold">
                 {product.title}
               </h3>
               <div>★ {product.rating}</div>
